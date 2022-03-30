@@ -1,0 +1,50 @@
+pipeline{
+    agent any
+    environment{
+        NAME = 'SIRAN'
+        LASTNAME='JEEVI'
+        secret=credentials("SECRET_TEXT")
+    }
+    stages{
+        stage('Build'){
+            steps{
+                echo "building"
+            }
+        }
+        stage('Test'){
+            steps{
+                echo "Testing..."
+            }
+        }
+        stage('Deploy'){
+            steps{
+                echo "Deploying...."
+            }
+        }
+        stage("Retry"){
+            steps{
+                retry(3){
+                    sh "echo Hello $NAME $LASTNAME"
+                    sh "echo $secret"
+                }
+                timeout(time:3 , unit:"SECONDS"){
+                    sh 'echo success'
+                }
+            }
+        }
+    }
+      post{
+            always{
+                echo 'echo I\'m run always'
+            }
+            success{
+                echo 'echo I\'m run only success'
+            }
+            failure{
+                echo 'echo I\'m run only fail'
+            }
+            unstable{
+                echo 'echo I\'m Unstable'
+            }
+        }
+}
