@@ -9,7 +9,7 @@ pipeline{
         stage("Build"){
             steps{
                 echo "Name is ${NAME}"
-                echo 'Name id $NAME'
+                sh 'echo Name is $NAME'
             }
         }
         stage("Test"){
