@@ -6,9 +6,11 @@ pipeline{
         secret=credentials("SECRET_TEXT")
     }
     stages{
-        stage("build"){
-            echo "Name is ${NAME}"
-            echo 'Name id $NAME'
+        stage("Build"){
+            steps{
+                echo "Name is ${NAME}"
+                echo 'Name id $NAME'
+            }
         }
         stage("Test"){
             when{
@@ -16,12 +18,15 @@ pipeline{
                     BRANCH_NAME == 'main' || BRANCH_NAME == 'dev'
                 }
             }
-
-            echo "Testing..."
+            steps{
+                echo "Testing..."
+            }
 
         }
         stage("Deploy"){
-            echo "Deploying...."
+            steps{
+                echo "Deploying...."
+            }
         }
     }
     post{
