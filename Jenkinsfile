@@ -4,8 +4,18 @@ pipeline{
         nodejs "my-nodejs"
     }
     stages{
+        stage('init'){
+            steps{
+                gv = import 'script.groovy'
+            }
+        }
         stage('Build'){
             steps{
+                when{
+                    expression{
+                        BRANCH_NAME == 'main' || BRANCH_NAME == 'dev'
+                    }
+                }
                 echo "Building..."
                 sh "npm install"
             }
