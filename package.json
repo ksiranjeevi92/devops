@@ -1,0 +1,22 @@
+{
+  "name": "devops",
+  "version": "0.0.1",
+  "description": "Jenkins pipeline demo",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/sirandx/devops.git"
+  },
+  "author": "sirnajeevi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/sirandx/devops/issues"
+  },
+  "dependencies": {
+    "express": "4.17.3"
+  },
+  "homepage": "https://gitlab.com/sirandx/devops#readme"
+}
