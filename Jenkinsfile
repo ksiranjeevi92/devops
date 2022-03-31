@@ -10,25 +10,25 @@ pipeline{
                 git 'https://github.com/ksiranjeevi92/devops.git'
             }
         }
-    }
 
-    stage('Build'){
-        steps{
-            echo "Building..."
-            sh "npm install"
+        stage('Build'){
+            steps{
+                echo "Building..."
+                sh "npm install"
+            }
         }
-    }
 
-    stage("Test"){
-        steps{
-            echo "Testing...."
-            sh "npm run test"
+        stage("Test"){
+            steps{
+                echo "Testing...."
+                sh "npm run test"
+            }
         }
-    }
 
-    stage("Deploy"){
-        steps{
-            echo "Deployig..."
+        stage("Deploy"){
+            steps{
+                echo "Deployig..."
+            }
         }
     }
 }
