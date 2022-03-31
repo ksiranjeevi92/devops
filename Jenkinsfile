@@ -1,46 +1,31 @@
 pipeline{
     agent any
-    environment{
-        NAME = 'SIRAN'
-        LASTNAME='JEEVI'
-        secret=credentials("SECRET_TEXT")
-    }
     stages{
-        stage("Build"){
+        stage('Clone'){
             steps{
-                echo "Name is ${NAME}"
-                sh "echo Name is $NAME"
-            }
-        }
-        stage("Test"){
-            when{
-                expression{
-                    BRANCH_NAME == 'main' || BRANCH_NAME == 'dev'
-                }
-            }
-            steps{
-                echo "Testing..."
-            }
-
-        }
-        stage("Deploy"){
-            steps{
-                echo "Deploying...."
+                
+                git 'https://github.com/ksiranjeevi92/devops.git'
             }
         }
     }
-    post{
-        always{
-            echo "Im run always"
+
+    stage('Build'){
+        steps{
+            echo "Building..."
+            sh "npm install"
         }
-        success{
-            echo "Build Success"
+    }
+
+    stage("Test"){
+        steps{
+            echo "Testing...."
+            sh "npm run test"
         }
-        failure{
-            echo "Build failed"
-        }
-        unstable{
-            echo "Unstable build"
+    }
+
+    stage("Deploy"){
+        steps{
+            echo "Deployig..."
         }
     }
 }
