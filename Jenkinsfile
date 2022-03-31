@@ -1,3 +1,4 @@
+def gv
 pipeline{
     agent any
     tools{
@@ -6,7 +7,10 @@ pipeline{
     stages{
         stage('init'){
             steps{
-                gv = import 'script.groovy'
+                script{
+
+                    gv = load 'script.groovy'
+                }
             }
         }
         stage('Build'){
@@ -29,7 +33,9 @@ pipeline{
 
         stage("Deploy"){
             steps{
-                echo "Deployig..."
+                script{
+                    gv.deploy()
+                }
             }
         }
     }
