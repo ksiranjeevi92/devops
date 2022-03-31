@@ -4,20 +4,12 @@ pipeline{
         nodejs "my-nodejs"
     }
     stages{
-        stage('Clone'){
-            steps{
-
-                git 'https://github.com/ksiranjeevi92/devops.git'
-            }
-        }
-
         stage('Build'){
             steps{
                 echo "Building..."
                 sh "npm install"
             }
         }
-
         stage("Test"){
             steps{
                 echo "Testing...."
@@ -29,6 +21,20 @@ pipeline{
             steps{
                 echo "Deployig..."
             }
+        }
+    }
+    post{
+        always{
+            echo "Always..."
+        }
+        success{
+            echo "Success..."
+        }
+        failure{
+            echo "Failure..."
+        }
+        unstable{
+            echo 'Unstable...'
         }
     }
 }
