@@ -1,9 +1,12 @@
 pipeline{
     agent any
+    tools{
+        nodejs "my-nodejs"
+    }
     stages{
         stage('Clone'){
             steps{
-                
+
                 git 'https://github.com/ksiranjeevi92/devops.git'
             }
         }
